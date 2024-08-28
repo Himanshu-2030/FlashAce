@@ -12,13 +12,15 @@ import {
   CardContent,
   CircularProgress,
 } from '@mui/material';
-import SwipeableViews from 'react-swipeable-views';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default function Generate() {
   const { isLoaded, isSignedIn } = useUser();
   const [text, setText] = useState('');
   const [flashcards, setFlashcards] = useState([]);
-  const [loading, setLoading] = useState(false); // State to manage loading
+  const [loading, setLoading] = useState(false);
 
   if (!isLoaded) {
     return (
@@ -38,7 +40,7 @@ export default function Generate() {
       return;
     }
 
-    setLoading(true); // Start the loader
+    setLoading(true);
 
     try {
       const response = await fetch('/api/generate', {
@@ -56,8 +58,17 @@ export default function Generate() {
       console.error('Error generating flashcards:', error);
       alert('An error occurred while generating flashcards. Please try again.');
     } finally {
-      setLoading(false); // Stop the loader
+      setLoading(false);
     }
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
   };
 
   return (
@@ -81,14 +92,14 @@ export default function Generate() {
           color="primary"
           onClick={handleSubmit}
           fullWidth
-          disabled={loading} // Disable the button when loading
+          disabled={loading}
         >
           {loading ? <CircularProgress size={24} /> : 'Generate Flashcards'}
         </Button>
       </Box>
 
       {flashcards.length > 0 && (
-        <SwipeableViews enableMouseEvents>
+        <Slider {...settings}>
           {flashcards.map((flashcard, index) => (
             <Box key={index} sx={{ padding: 2 }}>
               <Card>
@@ -98,7 +109,7 @@ export default function Generate() {
               </Card>
             </Box>
           ))}
-        </SwipeableViews>
+        </Slider>
       )}
     </Container>
   );

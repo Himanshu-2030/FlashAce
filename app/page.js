@@ -14,14 +14,14 @@ export default function Home() {
   return (
     <Container maxWidth="lg">
       <Head>
-        <title>FlashAI</title>
+        <title>FlashAce</title>
         <meta name="description" content="Create flashcard from your text" />
       </Head>
 
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" style={{flexGrow: 1}}>
-            Flashcard SaaS
+            FlashACE
           </Typography>
           <SignedOut>
             <StyledSignInButton>Login</StyledSignInButton>
@@ -34,7 +34,7 @@ export default function Home() {
 
       <Box sx={{textAlign: 'center', my: 4}}>
         <Typography variant="h2" component="h1" gutterBottom>
-          Welcome to Flashcard SaaS
+          Welcome to FlashAce
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
           The easiest way to create flashcards from your text.
@@ -55,12 +55,7 @@ export default function Home() {
         </SignedOut>
       </Box>
 
-      <Box sx={{my: 6}}>
-        <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
-        <Grid container spacing={4}>
-          {/* Feature items */}
-        </Grid>
-      </Box>
+      
 
       <Box sx={{my: 6, textAlign: 'center'}}>
         <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
